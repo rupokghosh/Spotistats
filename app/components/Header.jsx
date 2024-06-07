@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="py-8 px-24 flex align-items justify-between">
+    <div className="py-8 px-4 md:px-24 flex align-items justify-between">
       <Link href="/" className="font-bold text-2xl text-secondary">
         Spotistats
       </Link>
