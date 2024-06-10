@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import axios from "axios";
@@ -13,12 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     if (session) {
+      const headers = {
+        Authorization: `Bearer ${session.token.access_token}`,
+      };
+
       const fetchTopItems = async () => {
         try {
-          const headers = {
-            Authorization: `Bearer ${session.token.access_token}`,
-          };
-
           const [userDataResponse, artistsResponse, tracksResponse] =
             await Promise.all([
               axios.get("https://api.spotify.com/v1/me", { headers }),
@@ -53,14 +53,13 @@ export default function Home() {
         {userData && (
           <div className="flex flex-col items-center gap-8">
             {userData.images.length > 0 && (
-              
               <img
                 src={userData.images[0].url}
                 alt="avatar"
                 className="w-28 rounded-full"
               />
             )}
-            <p className="font-bold text-lg text-primary">{userData.display_name}</p>
+            <p className="italic text-lg text-error">{`@ ${userData.display_name.toLowerCase()}`}</p>
           </div>
         )}
       </div>
@@ -110,6 +109,14 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </div>
+      <div>
+        <Link
+          href="/stats"
+          className="font-bold text-error underline italic text-xl"
+        >
+          more stats
+        </Link>
       </div>
     </div>
   );
