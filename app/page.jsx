@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data: session } = useSession();
-
+  const [userData, setUserData] = useState(null);
   const [topArtists, setTopArtists] = useState([]);
   const [topTracks, setTopTracks] = useState([]);
 
@@ -19,17 +19,19 @@ export default function Home() {
             Authorization: `Bearer ${session.token.access_token}`,
           };
 
-          const [artistsResponse, tracksResponse] = await Promise.all([
-            axios.get(
-              "https://api.spotify.com/v1/me/top/artists?limit=5&time_range=short_term",
-              { headers }
-            ),
-            axios.get(
-              "https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=short_term",
-              { headers }
-            ),
-          ]);
-
+          const [userDataResponse, artistsResponse, tracksResponse] =
+            await Promise.all([
+              axios.get("https://api.spotify.com/v1/me", { headers }),
+              axios.get(
+                "https://api.spotify.com/v1/me/top/artists?limit=5&time_range=short_term",
+                { headers }
+              ),
+              axios.get(
+                "https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=short_term",
+                { headers }
+              ),
+            ]);
+          setUserData(userDataResponse.data);
           setTopArtists(artistsResponse.data.items);
           setTopTracks(tracksResponse.data.items);
         } catch (error) {
@@ -47,7 +49,22 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-evenly gap-10 mt-12">
-      <img src={img} alt="avatar" className="w-24 rounded-full" />
+      <div className="userDetails">
+        {userData && (
+          <div className="flex flex-col items-center gap-8">
+            {userData.images.length > 0 && (
+              
+              <img
+                src={userData.images[0].url}
+                alt="avatar"
+                className="w-28 rounded-full"
+              />
+            )}
+            <p className="font-bold text-lg text-primary">{userData.display_name}</p>
+          </div>
+        )}
+      </div>
+
       <div className="font-bold text-2xl text-secondary">
         Top Songs this month
       </div>
