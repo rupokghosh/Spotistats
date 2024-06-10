@@ -25,7 +25,7 @@ export default function Home() {
               { headers }
             ),
             axios.get(
-              "https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=short_term",
+              "https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=short_term",
               { headers }
             ),
           ]);
@@ -48,19 +48,33 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-evenly gap-10 mt-12">
       <img src={img} alt="avatar" className="w-24 rounded-full" />
-      <div className="font-bold text-2xl text-neutral">
-        Top Songs this month{" "}
+      <div className="font-bold text-2xl text-secondary">
+        Top Songs this month
       </div>
-      <div className="songs flex justify-evenly items-center gap-6 ">
-        <ul>
+      <div className="songs ">
+        <ul className=" flex justify-evenly items-center flex-wrap">
           {topTracks.map((track) => (
-            <li key={track.id}>{track.name}</li>
+            <li key={track.id} className="w-1/4 mb-6">
+              <div className="flex flex-col items-center gap-2 ">
+                <img
+                  src={track.album.images[0].url}
+                  alt={track.name}
+                  className="w-32 rounded-lg"
+                />
+                <h3 className="text-lg text-secondary font-semibold">
+                  {" "}
+                  {track.name}
+                </h3>
+                <p className="text-neutral font-semibold italic">
+                  {track.artists[0].name}
+                </p>
+              </div>
+            </li>
           ))}
         </ul>
       </div>
-      <div className="font-bold text-2xl text-neutral">
-        {" "}
-        Top Artists this month{" "}
+      <div className="font-bold text-2xl text-secondary">
+        Top Artists this month
       </div>
       <div className="artists flex justify-evenly items-center gap-6">
         <ul className="flex items-center justify-evenly gap-10">
@@ -72,7 +86,9 @@ export default function Home() {
                   alt={artist.name}
                   className="w-24 rounded-full"
                 />
-                <p className="font-bold text-lg">{artist.name}</p>
+                <p className="font-bold text-lg text-secondary">
+                  {artist.name}
+                </p>
               </div>
             </li>
           ))}
