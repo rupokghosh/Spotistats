@@ -113,7 +113,7 @@ export default function Home() {
       <div>
         <Link
           href="/stats"
-          className="font-bold text-error underline italic text-xl"
+          className="bg-grey italic text-md shadow-md shadow-neutral px-4 py-2 rounded-full hover:bg-base-100 hover:text-secondary text-neutral hover:shadow-secondary"
         >
           more stats
         </Link>
