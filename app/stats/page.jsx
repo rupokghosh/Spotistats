@@ -49,11 +49,13 @@ const page = () => {
       };
 
       fetchData();
+      console.log(timeRange);
     }
-  }, [timeRange]);
+  }, [timeRange, session]);
 
   const handleTimeRangeChange = (range) => {
     setTimeRange(range);
+    console.log(range);
   };
 
   return (
