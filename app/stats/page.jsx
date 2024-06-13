@@ -49,13 +49,11 @@ const page = () => {
       };
 
       fetchData();
-      console.log(timeRange);
     }
   }, [timeRange, session]);
 
   const handleTimeRangeChange = (range) => {
     setTimeRange(range);
-    console.log(range);
   };
 
   return (
@@ -82,7 +80,7 @@ const page = () => {
         {artists.map((artist) => (
           <div
             key={artist.id}
-            className="flex justify-between items-center gap-32 shadow-sm shadow-neutral mb-6 rounded-md border-neutral border p-3 hover:bg-neutral"
+            className="flex justify-between items-center gap-32 shadow-sm shadow-neutral mb-6 rounded-md border-neutral border p-3 hover:bg-neutral md:gap-64"
           >
             <div className="text-success text-md font-semibold italic">
               {artist.name}
@@ -98,7 +96,24 @@ const page = () => {
       <h1 className={textStyles}>Songs</h1>
       <div className="allSongs">
         {songs.map((song) => (
-          <div key={song.id}>{song.name}</div>
+          <div
+            key={song.id}
+            className="flex justify-between items-center gap-32 shadow-sm shadow-neutral mb-6 rounded-md border-neutral border p-3 hover:bg-neutral md:gap-64"
+          >
+            <div>
+              <div className="text-success text-md italic font-semibold">
+                {song.name}
+              </div>
+              <div className="text-emerald-800 text-sm italic">
+                {song.artists[0].name}
+              </div>
+            </div>
+            <img
+              src={song.album.images[0].url}
+              alt={song.name}
+              className="w-12 rounded-full"
+            />
+          </div>
         ))}
       </div>
       <h1 className={textStyles}>Genres</h1>
