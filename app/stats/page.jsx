@@ -15,22 +15,85 @@ const page = () => {
 
   const textStyles = "text-xl font-semibold text-secondary mt-10";
 
+  useEffect(() => {
+    if (session) {
+      const headers = {
+        Authorization: `Bearer ${session.token.access_token}`,
+      };
+
+      const fetchData = async () => {
+        try {
+          const artistResponse = await axios.get(
+            `https://api.spotify.com/v1/me/top/artists?limit=10&time_range=${timeRange}`,
+            {
+              headers,
+            }
+          );
+          setArtists(artistResponse.data.items);
+
+          const songResponse = await axios.get(
+            `https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=${timeRange}`,
+            {
+              headers,
+            }
+          );
+          setSongs(songResponse.data.items);
+
+          const allGenres = artistResponse.data.items.flatMap(
+            (artist) => artist.genres
+          );
+          setGenres([...new Set(allGenres)]);
+        } catch (error) {
+          console.error("Error fetching data from Spotify API:", error);
+        }
+      };
+
+      fetchData();
+    }
+  }, [timeRange]);
+
+  const handleTimeRangeChange = (range) => {
+    setTimeRange(range);
+  };
+
   return (
     <div className="flex flex-col justify-evenly items-center my-10">
       <h1 className="font-bold text-2xl text-secondary mb-16">
         Detailed Statistics
       </h1>
       <div className="btns flex align-center justify-between gap-4 md:gap-64 mb-8">
-        <TimeBtn name="One Year" />
-        <TimeBtn name="Six Months" />
-        <TimeBtn name="One Month" />
+        <TimeBtn
+          name="One Year"
+          onClick={() => handleTimeRangeChange("long_term")}
+        />
+        <TimeBtn
+          name="Six Months"
+          onClick={() => handleTimeRangeChange("medium_term")}
+        />
+        <TimeBtn
+          name="One Month"
+          onClick={() => handleTimeRangeChange("short_term")}
+        />
       </div>
       <h1 className={textStyles}>Artists</h1>
-      <div className="allArtists"></div>
+      <div className="allArtists">
+        {artists.map((artist) => (
+          <div key={artist.id}>{artist.name}</div>
+        ))}
+      </div>
       <h1 className={textStyles}>Songs</h1>
-      <div className="allSongs"></div>
+      <div className="allSongs">
+        {songs.map((song) => (
+          <div key={song.id}>{song.name}</div>
+        ))}
+      </div>
       <h1 className={textStyles}>Genres</h1>
-      <div className="allGenres"></div>
+      <div className="allGenres">
+        {" "}
+        {genres.map((genre, index) => (
+          <div key={index}>{genre}</div>
+        ))}
+      </div>
     </div>
   );
 };
