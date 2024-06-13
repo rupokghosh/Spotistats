@@ -51,7 +51,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-evenly gap-10 mt-12">
       <div className="userDetails">
         {userData && (
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-2">
             {userData.images.length > 0 && (
               <img
                 src={userData.images[0].url}
