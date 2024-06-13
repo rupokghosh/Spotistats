@@ -13,7 +13,7 @@ const page = () => {
   const [songs, setSongs] = useState([]);
   const [genres, setGenres] = useState([]);
 
-  const textStyles = "text-xl font-semibold text-secondary mt-10";
+  const textStyles = "text-xl font-semibold text-secondary mt-10 mb-4";
 
   useEffect(() => {
     if (session) {
@@ -80,7 +80,19 @@ const page = () => {
       <h1 className={textStyles}>Artists</h1>
       <div className="allArtists">
         {artists.map((artist) => (
-          <div key={artist.id}>{artist.name}</div>
+          <div
+            key={artist.id}
+            className="flex justify-between items-center gap-32 shadow-sm shadow-neutral mb-6 rounded-md border-neutral border p-3 hover:bg-neutral"
+          >
+            <div className="text-success text-md font-semibold italic">
+              {artist.name}
+            </div>
+            <img
+              src={artist.images[0].url}
+              alt={artist.name}
+              className="w-12 h-12 rounded-full"
+            />
+          </div>
         ))}
       </div>
       <h1 className={textStyles}>Songs</h1>
