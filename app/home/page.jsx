@@ -37,7 +37,7 @@ const pages = () => {
             <div className=" p-2 rounded ">
               <h3 className="text-2xl font-bold ">Top Artists/Tracks</h3>
               <p>
-                Find out which artists and tracks you've been listening to the
+                Find out which artists and tracks you`&apos`ve been listening to the
                 most.
               </p>
             </div>
@@ -47,7 +47,7 @@ const pages = () => {
         <section id="wrapped" className="py-20 ">
           <h2 className="text-4xl font-bold mb-6">Spotify Wrapped</h2>
           <p className="mb-6">
-            Each year, Spotify Wrapped brings you the music and podcasts you've{" "}
+            Each year, Spotify Wrapped brings you the music and podcasts you`&apos`ve{" "}
             <br />
             listened to the most. With Statsify, you can dive even deeper into{" "}
             <br />
