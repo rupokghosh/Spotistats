@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -6,7 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
-const page = () => {
+const Page = () => {
   const { data: session } = useSession();
   const [timeRange, setTimeRange] = useState("short_term");
   const [artists, setArtists] = useState([]);
@@ -114,4 +115,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
