@@ -110,7 +110,7 @@ export default function Home() {
           ))}
         </ul>
       </div>
-      <div>
+      <div className="mb-10">
         <Link
           href="/stats"
           className="bg-grey italic text-md shadow-md shadow-neutral px-4 py-2 rounded-full hover:bg-base-100 hover:text-secondary text-neutral hover:shadow-secondary"

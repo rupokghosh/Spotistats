@@ -11,7 +11,6 @@ const page = () => {
   const [timeRange, setTimeRange] = useState("short_term");
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
-  const [genres, setGenres] = useState([]);
 
   const textStyles = "text-xl font-semibold text-secondary mt-10 mb-4";
 
@@ -38,11 +37,6 @@ const page = () => {
             }
           );
           setSongs(songResponse.data.items);
-
-          const allGenres = artistResponse.data.items.flatMap(
-            (artist) => artist.genres
-          );
-          setGenres([...new Set(allGenres)]);
         } catch (error) {
           console.error("Error fetching data from Spotify API:", error);
         }
@@ -114,13 +108,6 @@ const page = () => {
               className="w-12 rounded-full"
             />
           </div>
-        ))}
-      </div>
-      <h1 className={textStyles}>Genres</h1>
-      <div className="allGenres">
-        {" "}
-        {genres.map((genre, index) => (
-          <div key={index}>{genre}</div>
         ))}
       </div>
     </div>
