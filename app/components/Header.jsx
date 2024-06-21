@@ -18,7 +18,7 @@ const Header = () => {
         <Link href="/stats" className={btnStyle}>
           stats
         </Link>
-        <button className={btnStyle}> share</button>
+
         {session ? (
           <button className={btnStyle} onClick={() => signOut()}>
             logout
