@@ -70,14 +70,14 @@ export default function Home() {
       <div className="songs ">
         <ul className=" flex justify-evenly items-center flex-wrap">
           {topTracks.map((track) => (
-            <li key={track.id} className="w-1/4 mb-6">
+            <li key={track.id} className="md:w-1/4 mb-6 w-1/2">
               <div className="flex flex-col items-center gap-2 ">
                 <img
                   src={track.album.images[0].url}
                   alt={track.name}
                   className="w-32 rounded-lg"
                 />
-                <h3 className="text-lg text-secondary font-semibold">
+                <h3 className="text-lg text-secondary font-semibold text-center">
                   {" "}
                   {track.name}
                 </h3>
@@ -92,17 +92,17 @@ export default function Home() {
       <div className="font-bold text-2xl text-secondary">
         Top Artists this month
       </div>
-      <div className="artists flex justify-evenly items-center gap-6">
-        <ul className="flex items-center justify-evenly gap-10">
+      <div className="artists flex flex-col md:flex-row justify-evenly items-center gap-6">
+        <ul className="flex flex-wrap items-center justify-center md:justify-evenly gap-4 md:gap-10">
           {topArtists.map((artist) => (
-            <li key={artist.id}>
-              <div className="flex flex-col gap-8 justify-between items-center">
+            <li key={artist.id} className="flex flex-col items-center">
+              <div className="flex flex-col gap-4 md:gap-8 justify-between items-center">
                 <img
                   src={artist.images[0].url}
                   alt={artist.name}
-                  className="w-24 rounded-full"
+                  className="w-20 md:w-24 rounded-full"
                 />
-                <p className="font-bold text-lg text-secondary">
+                <p className="font-bold text-base md:text-lg text-secondary text-center">
                   {artist.name}
                 </p>
               </div>
@@ -110,6 +110,7 @@ export default function Home() {
           ))}
         </ul>
       </div>
+
       <div className="mb-10">
         <Link
           href="/stats"
