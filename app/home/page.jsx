@@ -12,11 +12,12 @@ export default function Home() {
   const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
+    // check if session exists
     if (session) {
       const headers = {
         Authorization: `Bearer ${session.token.access_token}`,
       };
-
+      // fetch and set data
       const fetchTopItems = async () => {
         try {
           const [userDataResponse, artistsResponse, tracksResponse] =

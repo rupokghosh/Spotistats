@@ -16,11 +16,12 @@ const Page = () => {
   const textStyles = "text-xl font-semibold text-secondary mt-10 mb-4";
 
   useEffect(() => {
+    // check is session exists
     if (session) {
       const headers = {
         Authorization: `Bearer ${session.token.access_token}`,
       };
-
+      // if session exists then fetch and set data 
       const fetchData = async () => {
         try {
           const artistResponse = await axios.get(
