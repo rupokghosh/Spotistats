@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div className="py-8 px-4 md:px-24 flex align-items justify-between">
-      <Link href="/" className="font-bold text-2xl text-secondary">
+      <Link href="/home" className="font-bold text-2xl text-secondary">
         Statsify
       </Link>
       <div className="flex gap-8 align-items justify-between text-accent">
