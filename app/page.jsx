@@ -17,7 +17,7 @@ const Pages = () => {
         Discover Your Spotify Stats and Get insights into your listening habits.
       </h3>
       <button
-        className="rounded-full py-2 px-4 mb-24 border border-neutral hover:bg-neutral text-neutral hover:text-primary-content "
+        className="rounded-full py-2 px-4 mb-24 border border-secondary hover:bg-neutral text-secondary hover:text-white "
         onClick={() => signIn("spotify", { callbackUrl: "/home" })}
       >
         Get Started
